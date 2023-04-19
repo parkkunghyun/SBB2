@@ -7,6 +7,7 @@ import sbb.SBB2.DataNofFoundException;
 import sbb.SBB2.entity.Question;
 import sbb.SBB2.repository.QuestionRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.zip.DataFormatException;
@@ -29,5 +30,13 @@ public class QuestionService {
         else{
             throw new DataNofFoundException("question not Found");
         }
+    }
+
+    public void create(String subject, String content) {
+        Question question = new Question();
+        question.setSubject(subject);
+        question.setContent(content);
+        question.setCreateDate(LocalDateTime.now());
+        questionRepository.save(question);
     }
 }
